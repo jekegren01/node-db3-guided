@@ -15,3 +15,14 @@ Guided project for **Node DB 3** Module.
 - [ ] type `npm run server` to start the API.
 
 Please follow along as the instructor creates database access methods for a multi table schema.
+
+## Notes
+
+- Primary Key - is an identifying column of a table which should be unique for each row.
+- Foreign Key - a column that points to the primary key of a row in another table.
+
+## New Commands
+
+- Join - merges tables togther into on temporary table.
+    Inner Join, Left Join, Right Join, Full Join
+    

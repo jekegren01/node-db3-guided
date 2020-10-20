@@ -1,6 +1,7 @@
 const express = require("express")
 const db = require("../data/config")
 const { validateUserId } = require("./user-middleware")
+const userModel = require("./user-model")
 
 const router = express.Router()
 
@@ -49,6 +50,27 @@ router.delete("/users/:id", validateUserId(), async (req, res, next) => {
 		await db("users").where({ id }).del()
 
 		res.status(204).end()
+	} catch(err) {
+		next(err)
+	}
+})
+
+router.get("/users/:id/posts", async (req, res, next) => {
+	try {
+		//moved the function over to model file and called the function
+		///*translates to 
+		// 	SELECT posts.id, posts.contents, users.username
+		// 	FROM posts
+		// 	JOIN users ON users.id = posts.user_id
+		// 	WHERE posts.user_id = ?;
+		// */
+		// const posts = await db('posts as p')
+		// 	.innerJoin("users as u", "u.id", "p.user_id")
+		// 	.where("p.user_id", req.params.id)
+		// 	.select("p.id", "p.contents", "u.username")
+		const posts = await userModel.findPostsByUserId(req.params.id)
+
+		res.json(posts)
 	} catch(err) {
 		next(err)
 	}
