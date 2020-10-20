@@ -25,4 +25,3 @@ Please follow along as the instructor creates database access methods for a mult
 
 - Join - merges tables togther into on temporary table.
     Inner Join, Left Join, Right Join, Full Join
-    
